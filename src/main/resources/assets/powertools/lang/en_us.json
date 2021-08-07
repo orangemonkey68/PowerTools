@@ -1,0 +1,10 @@
+{
+  "text.powertools.thats-not-yours": "You're not allowed to use that!",
+  "text.powertools.must-wait": "You must wait %s seconds to use that.",
+  "text.powertools.out-of-uses": "You ran out of uses!",
+  "text.powertools.remaining-uses": "Remaining Uses: %s",
+  "text.powertools.tool-created": "Successfully created a PowerTool with the commands %s, a cooldown of %s ticks, and %s uses that %s consumed when run out of uses.",
+  "text.powertools.must-hold-item": "You must be holding an item to make a PowerTool.",
+  "text.powertools.unknown-error-powertool-creation": "An unknown error occurred trying to create your PowerTool. Are you sure you have access to that command?",
+  "text.powertools.might-lost-item": "If you do that you will lose your PowerTool. Do it again in %s sec to confirm."
+}
