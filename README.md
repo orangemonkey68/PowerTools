@@ -13,7 +13,7 @@ into your mods folder in your Fabric installation!
     - A: Short answer: Maybe. PowerTools was not built with other platforms in mind, and the existing codebase would
   have to be heavily refactored and abstracted. Don't count on it happening any time soon.
 - Q: I found a bug, what should I do?
-    - A: Please read [Submitting A Bug Report](), and follow the steps found there.
+    - A: Please read [Submitting A Bug Report](https://github.com/orangemonkey68/PowerTools/blob/master/SubmittingABugReport.md), and follow the steps found there.
 
 ## License
 
