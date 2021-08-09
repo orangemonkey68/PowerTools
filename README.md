@@ -1,9 +1,20 @@
-# Fabric Example Mod
+# PowerTools
 
 ## Setup
+PowerTools **requires** [ClothConfig](https://github.com/shedaniel/cloth-config), and that's it! Just drop the jars
+into your mods folder in your Fabric installation!
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+
+##FAQ
+
+- Q: Will there be a Forge version?
+    - A: No. (Probably)
+- Q: Will PowerTools come to *any* other Minecraft platforms?
+    - A: Short answer: Maybe. PowerTools was not built with other platforms in mind, and the existing codebase would
+  have to be heavily refactored and abstracted. Don't count on it happening any time soon.
+- Q: I found a bug, what should I do?
+    - A: Please read [Submitting A Bug Report](), and follow the steps found there.
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This mod is under the GPL3.0 license. Feel free to learn from it and contribute!
