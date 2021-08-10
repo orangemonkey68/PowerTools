@@ -89,7 +89,7 @@ public class PowerToolsCommandManager {
             }
         }
 
-        PowerToolData data = new PowerToolData(commands, cooldown, maxUses, consume, Collections.singletonList(player.getUuid()), 0, 0);
+        PowerToolData data = new PowerToolData(commands, cooldown, maxUses, consume, Collections.singletonList(player.getUuid()), 0, false);
 
         ItemStack stack = player.getStackInHand(Hand.MAIN_HAND);
         if (stack == ItemStack.EMPTY){

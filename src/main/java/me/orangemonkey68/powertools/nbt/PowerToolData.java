@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.UUID;
 
 public class PowerToolData {
-    public PowerToolData(List<String> commandList, long cooldownTicks, long maxUses, boolean shouldConsume, List<UUID> allowedPlayers, long lastUsedTime, long lastDangerousAttempt) {
+    public PowerToolData(List<String> commandList, long cooldownTicks, long maxUses, boolean shouldConsume, List<UUID> allowedPlayers, long lastUsedTime, boolean canBeUsedDangerously) {
         this.commandList = commandList;
         this.cooldownTicks = cooldownTicks;
         this.maxUses = maxUses;
         this.shouldConsume = shouldConsume;
         this.allowedPlayers = allowedPlayers;
         this.lastUsedTime = lastUsedTime;
+        this.canBeUsedDangerously = canBeUsedDangerously;
     }
 
     private List<String> commandList;
@@ -21,7 +22,7 @@ public class PowerToolData {
     private boolean shouldConsume;
     private List<UUID> allowedPlayers;
     private long lastUsedTime;
-    private long lastDangerousAttempt;
+    private boolean canBeUsedDangerously;
 
 
     public static PowerToolData fromTag(NbtCompound tag){
@@ -32,7 +33,7 @@ public class PowerToolData {
                 tag.getBoolean("shouldConsume"),
                 tag.getList("allowedPlayers", 11).stream().map(nbtElement -> NbtHelper.toUuid((NbtIntArray)nbtElement)).toList(),
                 tag.getLong("lastUsedTime"),
-                tag.getLong("lastDangerousAttempt"));
+                tag.getBoolean("canBeUsedDangerously"));
     }
 
     public NbtCompound toTag(){
@@ -49,7 +50,7 @@ public class PowerToolData {
         tag.putBoolean("shouldConsume", shouldConsume);
         tag.put("allowedPlayers", allowedPlayersTag);
         tag.putLong("lastUsedTime", lastUsedTime);
-        tag.putLong("lastDangerousAttempt", lastDangerousAttempt);
+        tag.putBoolean("canBeUsedDangerously", canBeUsedDangerously);
 
         return tag;
     }
@@ -95,12 +96,12 @@ public class PowerToolData {
         return allowedPlayers;
     }
 
-    public long getLastDangerousAttempt() {
-        return lastDangerousAttempt;
+    public boolean canBeUsedDangerously() {
+        return canBeUsedDangerously;
     }
 
-    public void setLastDangerousAttempt(long lastDangerousAttempt) {
-        this.lastDangerousAttempt = lastDangerousAttempt;
+    public void setCanBeUsedDangerously(boolean canBeUsedDangerously) {
+        this.canBeUsedDangerously = canBeUsedDangerously;
     }
 
     public long getLastUsedTime() {
@@ -110,6 +111,8 @@ public class PowerToolData {
     public void setLastUsedTime(long lastUsedTime) {
         this.lastUsedTime = lastUsedTime;
     }
+
+
 
 
 

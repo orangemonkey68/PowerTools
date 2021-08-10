@@ -9,5 +9,5 @@ import java.util.List;
 public class PowerToolsConfig implements ConfigData {
     public List<String> bannedCommands = List.of("stop", "ban", "kick");
     public List<String> checkedItems = List.of("minecraft:boat", "minecraft:minecart");
-    public long dangerousPlaceCooldownTicks = 30;
+    public int dangerousPlaceCooldownTicks = 30;
 }
