@@ -53,8 +53,6 @@ public class Scheduler {
         tasksToRemove.clear();
     }
 
-
-
     public static class Task {
         public Task(Runnable runnable, int ticks){
             this.runnable = runnable;
