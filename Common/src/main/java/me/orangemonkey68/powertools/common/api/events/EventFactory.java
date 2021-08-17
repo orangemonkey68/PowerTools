@@ -11,7 +11,7 @@ public class EventFactory {
         ARRAY_BACKED_EVENTS.forEach(ArrayBackedEvent::update);
     }
 
-    private static <T> Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
+    public static <T> Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
         ArrayBackedEvent<T> event = new ArrayBackedEvent<>(type, invokerFactory);
         ARRAY_BACKED_EVENTS.add(event);
         return event;
