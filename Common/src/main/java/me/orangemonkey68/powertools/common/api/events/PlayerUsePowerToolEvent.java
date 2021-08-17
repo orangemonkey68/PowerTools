@@ -4,7 +4,6 @@ import me.orangemonkey68.powertools.common.api.ActionResult;
 import me.orangemonkey68.powertools.common.api.PowerToolData;
 import me.orangemonkey68.powertools.common.api.wrapper.APIPlayer;
 
-//TODO: Maybe generalize the Event class to repeat less code? Look at Fabric event system
 public interface PlayerUsePowerToolEvent {
     Event<PlayerUsePowerToolEvent> EVENT = EventFactory.createArrayBacked(
             PlayerUsePowerToolEvent.class,

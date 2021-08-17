@@ -32,22 +32,37 @@ public class Scheduler {
         });
     }
 
+    /**
+     * Adds a task to the queue
+     * @param task The task to be queued
+     */
     public void scheduleTask(Task task){
         tasks.add(task);
     }
 
+    /**
+     * A convenience method that just calls {@link #scheduleTask(Task)} with a new Task object
+     * @param runnable The runnable passed into the {@link Task}
+     * @param ticks The number of ticks to wait
+     */
     public void scheduleTask(Runnable runnable, int ticks){
         scheduleTask(new Task(runnable, ticks));
     }
 
+    /**
+     * A convenience method that calls {@link #scheduleTask(Runnable, int)} with a 0 tick wait.
+     * @param runnable The runnable passed into the {@link Task}
+     */
     public void scheduleNextTick(Runnable runnable){
         scheduleTask(runnable, 0);
     }
 
+    //Queues task to be deleted
     private void queueDeadTask(Task task){
         tasksToRemove.add(task);
     }
 
+    //Clears executed tasks from the task list
     private void clearDeadTasks() {
         tasksToRemove.forEach(tasksToRemove::remove);
         tasksToRemove.clear();

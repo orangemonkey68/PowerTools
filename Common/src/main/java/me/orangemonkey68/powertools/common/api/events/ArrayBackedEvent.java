@@ -7,6 +7,10 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
 
+/**
+ * Unless you're building upon the event system, you probably don't need to instantiate this class. Call {@link EventFactory#createArrayBacked(Class, Function)} instead.
+ * @param <T> The invoker type
+ */
 public class ArrayBackedEvent<T> extends Event<T> {
     private final Function<T[], T> invokerFactory;
     private final Lock lock = new ReentrantLock();
@@ -18,6 +22,7 @@ public class ArrayBackedEvent<T> extends Event<T> {
         this.handlers = (T[]) Array.newInstance(type, 0);
         update();
     }
+
 
     void update() {
         this.invoker = invokerFactory.apply(handlers);
