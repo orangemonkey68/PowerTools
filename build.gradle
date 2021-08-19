@@ -4,7 +4,7 @@ plugins {
 }
 
 allprojects {
-    apply plugin: 'maven-publush'
+    apply plugin: 'maven-publish'
     apply plugin: 'java'
 
     publishing {
