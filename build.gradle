@@ -3,7 +3,12 @@ plugins {
     id "java"
 }
 
-allprojects {
+def secrets = new Properties()
+file("/secrets.properties").withInputStream {
+    secrets.load(it)
+}
+
+subprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'java'
 
@@ -13,16 +18,14 @@ allprojects {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/orangemonkey68/PowerTools")
                 credentials {
-                    username = System.getenv("GH_USERNAME")
-                    password = System.getenv("GH_PACKAGES_TOKEN")
+                    username = secrets.gh_username
+                    password = secrets.gh_packages_token
                 }
             }
         }
         publications {
             gpr(MavenPublication) {
-                groupId = 'me.orangemonkey68'
-                artifactId = 'powertools-common'
-                version = '0.1'
+                artifactId = "PowerTools-" //+ subproject name??
 
                 from components.java
             }
