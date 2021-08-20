@@ -4,34 +4,78 @@ plugins {
 }
 
 def secrets = new Properties()
+
 file("/secrets.properties").withInputStream {
     secrets.load(it)
 }
 
-subprojects {
+repositories {
+    mavenCentral()
+}
+
+allprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'java'
 
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/orangemonkey68/PowerTools")
-                credentials {
-                    username = secrets.gh_username
-                    password = secrets.gh_packages_token
+    version project.mod_version
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+        implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+        implementation 'org.jetbrains:annotations:20.1.0'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    }
+}
+
+//OKAY so tldr: Gradle is evil and I have larger issues than this. I'll work on a better solution in the future, but
+//for now I'm going with individual publishing scripts
+
+//if you'd like to find a better solution, future contributor, go for it!
+
+/**
+afterEvaluate {
+    subprojects { subproject ->
+        apply plugin: 'maven-publish'
+        apply plugin: 'java'
+
+        String archive_name = "PowerTools-" + subproject.name
+
+        group 'me.orangemonkey68'
+        version '0.0.1'
+
+        publishing {
+            repositories {repo ->
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/orangemonkey68/PowerTools")
+
+                    credentials {
+                        username = secrets.gh_username
+                        password = secrets.gh_packages_token
+                    }
                 }
             }
-        }
-        publications {
-            gpr(MavenPublication) {
-                artifactId = "PowerTools-" //+ subproject name??
+            publications {
+                gpr(MavenPublication) {
+                    archivesBaseName archive_name
+                    artifacts {
 
-                from components.java
+                    }
+
+                    from components.java
+                }
             }
         }
     }
 }
+
+**/
+
 
 
 

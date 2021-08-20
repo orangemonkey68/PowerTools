@@ -3,21 +3,49 @@ plugins {
     id 'java'
 }
 
-version 'unspecified'
+def secrets = new Properties()
+file("/../secrets.properties").withInputStream {
+    secrets.load(it)
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.jetbrains:annotations:20.1.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
     implementation 'com.google.code.gson:gson:2.8.7'
 }
 
+
+
+publishing {
+    repositories {repo ->
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/orangemonkey68/PowerTools")
+
+            credentials {
+                username = secrets.gh_username
+                password = secrets.gh_packages_token
+            }
+        }
+    }
+    publications {
+        //noinspection GroovyAssignabilityCheck
+        gpr(MavenPublication) {
+
+//            artifactId = ((String)"PowerTools-Common" + version)
+
+            def versionNumber = version.toString().replaceAll("\"", "")
+
+            groupId = "me.orangemonkey68.PowerTools"
+            artifactId = ("PowerTools-Common-v" + versionNumber)
+
+            //noinspection GroovyAssignabilityCheck
+            from components.java
+        }
+    }
+}
 
 
 test {
