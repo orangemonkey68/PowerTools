@@ -8,10 +8,3 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
-include 'Common'
-include 'Fabric'
-
-
-group = "me.orangemonkey68"
-

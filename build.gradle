@@ -11,6 +11,9 @@ file("/secrets.properties").withInputStream {
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://maven.fabricmc.net'
+    }
 }
 
 allprojects {
