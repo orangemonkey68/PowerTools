@@ -9,6 +9,8 @@ file("/secrets.properties").withInputStream {
     secrets.load(it)
 }
 
+
+
 repositories {
     mavenCentral()
     maven {
@@ -16,14 +18,52 @@ repositories {
     }
 }
 
-allprojects {
+subprojects { subproject ->
     apply plugin: 'maven-publish'
     apply plugin: 'java'
 
     version project.mod_version
+    group 'me.orangemonkey68.powertools'
+
+
+//    java {
+//        archivesBaseName "PowerTools-${subproject.name}"
+//    }
+
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/orangemonkey68/PowerTools")
+
+                credentials {
+                    username = secrets.gh_username
+                    password = secrets.gh_packages_token
+                }
+            }
+        }
+
+        publications {
+            gpr(MavenPublication) {
+                String artifactName = "powertools-${subproject.name}"
+                artifactName = artifactName.toLowerCase()
+                artifactId = artifactName
+
+                from components.java
+            }
+        }
+    }
 
     repositories {
         mavenCentral()
+
+        maven {
+            url = 'https://maven.pkg.github.com/orangemonkey68/PowerTools'
+            credentials {
+                username = secrets.gh_username
+                password = secrets.gh_packages_token
+            }
+        }
     }
 
     dependencies {

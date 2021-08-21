@@ -12,6 +12,3 @@ pluginManagement {
 include 'Common'
 include 'Fabric'
 
-
-group = "me.orangemonkey68"
-

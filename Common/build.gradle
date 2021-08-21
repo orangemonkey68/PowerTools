@@ -18,34 +18,32 @@ dependencies {
 
 
 
-publishing {
-    repositories {repo ->
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/orangemonkey68/PowerTools")
-
-            credentials {
-                username = secrets.gh_username
-                password = secrets.gh_packages_token
-            }
-        }
-    }
-    publications {
-        //noinspection GroovyAssignabilityCheck
-        gpr(MavenPublication) {
-
-//            artifactId = ((String)"PowerTools-Common" + version)
-
-            def versionNumber = version.toString().replaceAll("\"", "")
-
-            groupId = "me.orangemonkey68.PowerTools"
-            artifactId = ("PowerTools-Common-v" + versionNumber)
-
-            //noinspection GroovyAssignabilityCheck
-            from components.java
-        }
-    }
-}
+//publishing {
+//    repositories {repo ->
+//        maven {
+//            name = "GitHubPackages"
+//            url = uri("https://maven.pkg.github.com/orangemonkey68/PowerTools")
+//
+//            credentials {
+//                username = secrets.gh_username
+//                password = secrets.gh_packages_token
+//            }
+//        }
+//    }
+//    publications {
+//        //noinspection GroovyAssignabilityCheck
+//        gpr(MavenPublication) {
+//
+////            artifactId = ((String)"PowerTools-Common" + version)
+//
+//            groupId = "me.orangemonkey68.PowerTools"
+//            artifactId = ("PowerTools-Common")
+//
+//            //noinspection GroovyAssignabilityCheck
+//            from components.java
+//        }
+//    }
+//}
 
 
 test {
